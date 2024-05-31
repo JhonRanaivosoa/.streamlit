@@ -8,7 +8,7 @@ import pandas as pd
 st.title("Visualisation de données")
 
 # Charger les données
-data = [1,2,3,4]
+data = [1,2,3,4,5,6]
 
 # Afficher les données
 st.write(data)
