@@ -6,6 +6,21 @@ import plotly.express as px
 # Définir la configuration de la page pour activer le mode large
 st.set_page_config(layout="wide")
 
+# Ajouter du JavaScript pour recharger la page toutes les 30 secondes
+st.markdown(
+    """
+    <script>
+    function reload() {
+        setTimeout(function() {
+            window.location.reload(1);
+        }, 30000); // 30000 milliseconds = 30 seconds
+    }
+    window.onload = reload;
+    </script>
+    """,
+    unsafe_allow_html=True
+)
+
 # Code HTML et CSS intégré avec une navbar Bootstrap
 html_template = """
 <!DOCTYPE html>
