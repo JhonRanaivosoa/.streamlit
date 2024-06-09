@@ -12,11 +12,13 @@ password = 'Harisoa5janvier1998.'
 m = mega.login(email, password)
 
 # Télécharger le fichier depuis MEGA
-file = m.download_url('https://mega.nz/file/jegUxbiZ#qC8qz9q_PcH4OUBUKImXJ6fy6BI-YKt6rJawTWk-FC8')
+file_link = 'https://mega.nz/file/jegUxbiZ#qC8qz9q_PcH4OUBUKImXJ6fy6BI-YKt6rJawTWk-FC8'
+file_name = '00811820101_1717050720642.csv'  # Nom sous lequel vous souhaitez sauvegarder le fichier localement
+m.download_url(file_link, file_name)
 
 # Lire le fichier téléchargé (en supposant qu'il s'agit d'un fichier CSV)
-data = pd.read_csv(file)
+df = pd.read_csv(file_name)
 
 # Afficher les données sur Streamlit
 st.title('Données téléchargées de MEGA')
-st.dataframe(data)
+st.dataframe(df)
