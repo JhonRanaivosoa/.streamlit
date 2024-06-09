@@ -21,7 +21,7 @@ html_template = """
             background-color: #f8f9fa;
         }
         .container {
-            margin-top: 20px;
+            margin-top: 0px;
         }
     </style>
     <title>Streamlit with Bootstrap</title>
