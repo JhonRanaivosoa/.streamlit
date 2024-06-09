@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
+# Définir la configuration de la page pour activer le mode large
 st.set_page_config(layout="wide")
 
 # Code HTML et CSS intégré avec une navbar Bootstrap
@@ -21,13 +22,22 @@ html_template = """
             background-color: #f8f9fa;
         }
         .container {
-            margin-top: 0px;
+            margin-top: 20px;
+        }
+        .navbar-custom {
+            background: linear-gradient(90deg, rgba(255,0,0,0.08), rgba(255,165,0,0.08), rgba(238,130,238,0.08), rgba(0,0,255,0.08));
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        .content {
+            margin-top: 70px; /* Ajouter une marge supérieure pour éviter que le contenu ne soit caché derrière la navbar */
         }
     </style>
     <title>Streamlit with Bootstrap</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
         <a class="navbar-brand" href="#">Streamlit App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,7 +59,7 @@ html_template = """
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container content">
         <div class="jumbotron mt-4">
             <h1 class="display-4">Hello, Streamlit!</h1>
             <p class="lead">This is a simple integration of Bootstrap with Streamlit.</p>
