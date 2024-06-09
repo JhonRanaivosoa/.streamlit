@@ -3,3 +3,4 @@ pandas
 plotly
 streamlit
 gdown==4.2.0
+requests
