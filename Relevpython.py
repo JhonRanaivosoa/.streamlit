@@ -3,10 +3,11 @@
 
 import streamlit as st
 import pandas as pd
-from mega import Mega
+import plotly as px
+#from mega import Mega
 
 # Se connecter à MEGA
-mega = Mega()
+#mega = Mega()
 email = 'jhonranaivosoa@gmail.com'
 password = 'Harisoa5janvier1998.'
 m = mega.login(email, password)
