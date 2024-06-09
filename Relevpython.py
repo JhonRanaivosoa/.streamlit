@@ -4,7 +4,7 @@ import pandas as pd
 
 # Lien partagé du fichier sur Google Drive
 file_id = 'YOUR_FILE_ID'
-url = f'https://drive.google.com/uc?id={file_id}'
+url = 'https://drive.google.com/file/d/1ntNnU53yyZg9V5Gt-wwctEIoMLX3c-L-/view?usp=drive_link'
 
 # Fonction pour télécharger le fichier depuis Google Drive
 def download_file_from_google_drive(url, output):
