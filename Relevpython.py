@@ -3,7 +3,7 @@
 
 import streamlit as st
 import pandas as pd
-from mega import Mega
+#from mega import Mega
 
 # Se connecter à MEGA
 mega = Mega()
