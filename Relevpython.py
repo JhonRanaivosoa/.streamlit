@@ -8,7 +8,7 @@ def main():
         html_content = file.read()
 
     # Affichage du contenu HTML
-    st.markdown(html_content, unsafe_allow_html=True)
+     st.components.v1.html(html_content, height=600, scrolling=True
 
 if __name__ == '__main__':
     main()
