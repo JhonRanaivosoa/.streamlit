@@ -1,25 +1,23 @@
 
-
-
 import streamlit as st
+import numpy as np
 import pandas as pd
-import plotly as px
-#from mega import Mega
+import plotly.express as px
 
-# Se connecter à MEGA
-#mega = Mega()
-email = 'jhonranaivosoa@gmail.com'
-password = 'Harisoa5janvier1998.'
-m = mega.login(email, password)
+# Créer un tableau de données aléatoires
+np.random.seed(42)  # Pour la reproductibilité des résultats
+data = {
+    'X': np.random.rand(100),
+    'Y': np.random.rand(100)
+}
+df = pd.DataFrame(data)
 
-# Télécharger le fichier depuis MEGA
-file_link = 'https://mega.nz/file/jegUxbiZ#qC8qz9q_PcH4OUBUKImXJ6fy6BI-YKt6rJawTWk-FC8'
-file_name = '00811820101_1717050720642.csv'  # Nom sous lequel vous souhaitez sauvegarder le fichier localement
-m.download_url(file_link, file_name)
+# Afficher les premières lignes du tableau
+st.write("Tableau des Données Aléatoires")
+st.write(df.head())
 
-# Lire le fichier téléchargé (en supposant qu'il s'agit d'un fichier CSV)
-df = pd.read_csv(file_name)
+# Créer un graphique en nuage de points avec Plotly Express
+fig = px.scatter(df, x='X', y='Y', title='Scatter Plot des Données Aléatoires')
 
-# Afficher les données sur Streamlit
-st.title('Données téléchargées de MEGA')
-st.dataframe(df)
+# Afficher le graphique dans Streamlit
+st.plotly_chart(fig)
