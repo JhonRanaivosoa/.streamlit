@@ -4,7 +4,7 @@ import numpy as np
 import plotly.express as px
 
 # Définir la configuration de la page pour activer le mode large
-st.set_page_config(layout="wide", page_title="Streamlit Dark Mode", theme="Dark")
+st.set_page_config(layout="wide")
     
 # Ajouter du JavaScript pour recharger la page toutes les 30 secondes
 st.markdown(
