@@ -1,6 +1,14 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import plotly.express as px
 
+def main():
+    st.title('Exemple Streamlit avec HTML et Bootstrap')
 
+    # Lecture du fichier HTML
+    with open('index.html', 'r', encoding='utf-8') as file:
+        html_content = file.read()
+
+    # Affichage du contenu HTML
+    st.markdown(html_content, unsafe_allow_html=True)
+
+if __name__ == '__main__':
+    main()
