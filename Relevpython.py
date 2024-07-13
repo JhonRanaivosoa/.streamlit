@@ -1,9 +1,10 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+# Configurer le mode large de la page
 st.set_page_config(layout="wide")
+
 # Ajouter le CSS de Bootstrap
 st.markdown("""
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -75,15 +76,31 @@ average_sales = filtered_df['Sales'].mean()
 st.metric(label="Ventes Totales", value=f"{total_sales} USD")
 st.metric(label="Vente Moyenne", value=f"{average_sales:.2f} USD")
 
-# Affichage du graphique des ventes
+# Affichage des graphiques côte à côte
 st.header("Graphique des Ventes Mensuelles")
-fig = px.bar(filtered_df, x='Month', y='Sales', title='Ventes Mensuelles', color='Sales',
-             color_continuous_scale='Bluered', template='plotly_dark')
-fig.update_layout({
-    'plot_bgcolor': 'rgba(0, 0, 0, 0)',
-    'paper_bgcolor': 'rgba(0, 0, 0, 0)',
-})
-st.plotly_chart(fig)
+col1, col2 = st.columns(2)
+
+# Graphique en barres
+with col1:
+    st.subheader("Graphique en Barres")
+    fig_bar = px.bar(filtered_df, x='Month', y='Sales', title='Ventes Mensuelles', color='Sales',
+                     color_continuous_scale='Bluered', template='plotly_dark')
+    fig_bar.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+    })
+    st.plotly_chart(fig_bar, use_container_width=True)
+
+# Graphique en courbes
+with col2:
+    st.subheader("Graphique en Courbes")
+    fig_line = px.line(filtered_df, x='Month', y='Sales', title='Ventes Mensuelles',
+                       markers=True, template='plotly_dark')
+    fig_line.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+    })
+    st.plotly_chart(fig_line, use_container_width=True)
 
 # Affichage des données filtrées sous forme de tableau
 st.header("Données Filtrées")
