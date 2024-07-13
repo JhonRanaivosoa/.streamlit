@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+st.set_page_config(layout="wide")
 # Ajouter le CSS de Bootstrap
 st.markdown("""
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
