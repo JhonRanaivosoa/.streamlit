@@ -1,35 +1,33 @@
+
 import streamlit as st
+import pandas as pd
+import plotly.express as px
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
+# Créer un jeu de données simple
+data = {
+    'Month': ['January', 'February', 'March', 'April', 'May', 'June'],
+    'Sales': [150, 200, 250, 300, 350, 400]
+}
+df = pd.DataFrame(data)
 
-    <div class="container">
-    <h1>Bootstrap Example</h1>
-    <p>This is a simple Bootstrap example.</p>
-    
-    <!-- Example Bootstrap components -->
-    <div class="alert alert-primary" role="alert">
-      A simple primary alert—check it out!
-    </div>
-    
-    <button type="button" class="btn btn-primary">Primary Button</button>
-    </div>
+# Titre de l'application
+st.title("Tableau de Bord des Ventes Mensuelles")
 
-  <!-- Bootstrap JS and dependencies (optional) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
-    integrity="sha384-FJQpvrou5b1kUK2s4QDycr1fknqtp2pNVa+5tZt6vaw4vZv7vWkzE6bSaJm9KkK"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh/jFcIk5O+r4G/CpJw/TaF0JwJ8ERdknLPMO"
-    crossorigin="anonymous"></script>
-</body>
-</html>
+# Affichage du jeu de données sous forme de tableau
+st.header("Jeu de Données")
+st.table(df)
+
+# Commande pour filtrer les données par mois
+selected_months = st.multiselect(
+    'Sélectionnez les Mois à Afficher',
+    options=df['Month'].unique(),
+    default=df['Month'].unique()
+)
+
+# Filtrer les données en fonction des mois sélectionnés
+filtered_df = df[df['Month'].isin(selected_months)]
+
+# Affichage du graphique des ventes
+st.header("Graphique des Ventes Mensuelles")
+fig = px.bar(filtered_df, x='Month', y='Sales', title='Ventes Mensuelles')
+st.plotly_chart(fig)
