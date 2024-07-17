@@ -1,15 +1,10 @@
-import streamlit as st
 import pandas as pd
 
-# URL de téléchargement direct de Google Drive
-csv_url = 'https://drive.google.com/file/d/1ntNnU53yyZg9V5Gt-wwctEIoMLX3c-L-/view?usp=drive_link'
+# Remplacer 'votre_fichier.csv' par le nom de votre fichier CSV
+file_path = 'C:\Users\jhon.treso\OneDrive - Sanifer\Bureau\15\00811820101_1721109524739.csv'
 
-# Lire le fichier CSV depuis Google Drive
-@st.cache
-def load_data(url):
-    return pd.read_csv(url)
+# Lire le fichier CSV
+df = pd.read_csv(file_path)
 
-data = load_data(csv_url)
-
-# Afficher les données dans Streamlit
-st.write(data)
+# Afficher le contenu du fichier CSV
+print(df)
