@@ -24,46 +24,23 @@ st.title("SANIFER BMOI")
 st.write(data)
 
 
-import streamlit as st
-import plotly.graph_objects as go
-import pandas as pd
 
-# Exemple de données en milliards
-data = {
-    'Date': pd.date_range(start='2023-01-01', periods=10, freq='M'),
-    'Valeur': [12, 5, -3, 24, -10, 18, 9, -2, 4, 11]  # Données en dizaines
-}
+# Données
+x = [1, 2, 3, 4, 5]
+y = [10, 11, 12, 13, 14]
 
-df = pd.DataFrame(data)
-
-# Créer une trace avec Plotly
+# Création de la figure
 fig = go.Figure()
 
-# Ajouter une trace pour les valeurs supérieures ou égales à 0 (en bleu)
-fig.add_trace(go.Scatter(
-    x=df['Date'],
-    y=df['Valeur'].where(df['Valeur'] >= 0, None),
-    mode='lines',
-    line=dict(color='blue'),
-    name='Valeurs >= 0'
-))
+# Ajouter une courbe à la figure
+fig.add_trace(go.Scatter(x=x, y=y, mode='lines+markers', name='Courbe'))
 
-# Ajouter une trace pour les valeurs inférieures à 0 (en rouge)
-fig.add_trace(go.Scatter(
-    x=df['Date'],
-    y=df['Valeur'].where(df['Valeur'] < 0, None),
-    mode='lines',
-    line=dict(color='red'),
-    name='Valeurs < 0'
-))
-
-# Configurer la mise en page du graphique
+# Ajouter des titres et des étiquettes
 fig.update_layout(
-    title='Courbe Graphique des Valeurs en Milliards',
-    xaxis_title='Date',
-    yaxis_title='Valeur (en milliards)',
-    template='plotly_white'
+    title='Exemple de Courbe Graphique avec Plotly',
+    xaxis_title='Axe X',
+    yaxis_title='Axe Y'
 )
 
-# Afficher le graphique dans Streamlit
-st.plotly_chart(fig)
+# Afficher le graphique
+fig.show()
