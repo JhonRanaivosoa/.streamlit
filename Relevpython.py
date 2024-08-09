@@ -15,6 +15,6 @@ def load_data(url, sheet_name):
         return None
 
 # Charger les données de la feuille "MCB SANIFER"
-data = load_data(excel_url, "MCB SANIFER")
+data = load_data(excel_url, "BMOI SANIFER")
 
 st.write(data)
