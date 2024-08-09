@@ -25,6 +25,33 @@ st.title("SANIFER BMOI")
 
 st.write(data)
 
+import streamlit as st
+
+# Ajouter un titre dans la barre latérale
+st.sidebar.title("Navigation")
+
+# Ajouter des options de navigation dans la barre latérale
+option = st.sidebar.selectbox(
+    "Choisissez une page",
+    ("Accueil", "Analyse", "Rapports", "Contact")
+)
+
+# Afficher le contenu en fonction de la sélection
+if option == "Accueil":
+    st.title("Bienvenue à la page d'accueil")
+    st.write("Ceci est la page d'accueil.")
+
+elif option == "Analyse":
+    st.title("Page d'analyse")
+    st.write("Ceci est la page d'analyse.")
+
+elif option == "Rapports":
+    st.title("Page des rapports")
+    st.write("Ceci est la page des rapports.")
+
+elif option == "Contact":
+    st.title("Page de contact")
+    st.write("Ceci est la page de contact.")
 
 
 
