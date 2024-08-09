@@ -1,31 +1,24 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 
+# URL du fichier Excel sur GitHub
+excel_url = "https://raw.githubusercontent.com/votre-utilisateur/votre-repo/main/RELEVE%20SANIFER%202024/RELEVE%20SANIFER%202024.xlsx"
 
+# Fonction pour charger les données du fichier Excel
+@st.cache
+def load_data(url):
+    return pd.read_excel(url, sheet_name=None)  # `sheet_name=None` charge toutes les feuilles
 
-# Titre de l'application
-st.title("Calculs et Visualisation avec Plotly")
+# Charger les données
+data = load_data(excel_url)
 
-# Exemple de données
-data = {
-    'Category': ['A', 'B', 'C', 'D', 'E'],
-    'Values': [23, 45, 12, 67, 34]
-}
+# Afficher les noms des feuilles dans l'application Streamlit
+st.title("Données du fichier Excel")
+st.write("Feuilles disponibles :")
+for sheet_name in data.keys():
+    st.write(f"- {sheet_name}")
 
-# Conversion des données en DataFrame
-df = pd.DataFrame(data)
-
-# Calculs de base
-somme = df['Values'].sum()
-moyenne = df['Values'].mean()
-
-# Affichage des résultats des calculs
-st.write(f"**Somme des valeurs** : {somme}")
-st.write(f"**Moyenne des valeurs** : {moyenne}")
-
-# Création d'un graphique en barres
-fig = px.bar(df, x='Category', y='Values', title='Graphique des valeurs par catégorie')
-
-# Affichage du graphique dans Streamlit
-st.plotly_chart(fig)
+# Afficher les données de la première feuille
+first_sheet = list(data.keys())[0]
+st.write(f"**Données de la feuille : {first_sheet}**")
+st.write(data[first_sheet])
