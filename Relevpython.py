@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.graph_objs as go
 
 # URL brute du fichier Excel sur GitHub
 excel_url = "https://raw.githubusercontent.com/JhonRanaivosoa/streamlittest/5d21b841763b7f5e76e4e2ffbebc35193d81248a/RELEVE%20SANIFER%202024.xlsx"
@@ -27,28 +27,39 @@ if data is not None:
         # Supprimer les valeurs manquantes
         solde = data['Solde courant'].dropna()
         
-        # Créer le graphique
-        fig, ax = plt.subplots()
+        # Créer le graphique avec Plotly
+        fig = go.Figure()
 
-        # Créer des segments pour les couleurs conditionnelles
-        ax.plot(solde.index, solde, color='grey', alpha=0.5, label='Solde courant')  # Tracer la courbe en gris de base
-
-        # Colorier les parties en dessous de 0 en rouge
+        # Ajouter la trace pour les valeurs en dessous de 0
         below_zero = solde[solde < 0]
-        ax.fill_between(below_zero.index, below_zero, color='red', alpha=0.5, label='En dessous de 0')
+        fig.add_trace(go.Scatter(
+            x=below_zero.index,
+            y=below_zero,
+            mode='lines',
+            line=dict(color='red'),
+            name='En dessous de 0'
+        ))
 
-        # Colorier les parties au-dessus de 0 en bleu
+        # Ajouter la trace pour les valeurs au-dessus de 0
         above_zero = solde[solde >= 0]
-        ax.fill_between(above_zero.index, above_zero, color='blue', alpha=0.5, label='Au-dessus de 0')
+        fig.add_trace(go.Scatter(
+            x=above_zero.index,
+            y=above_zero,
+            mode='lines',
+            line=dict(color='blue'),
+            name='Au-dessus de 0'
+        ))
 
-        # Ajouter des labels et une légende
-        ax.set_title('Évolution de la colonne Solde courant')
-        ax.set_xlabel('Index')
-        ax.set_ylabel('Solde courant')
-        ax.legend()
+        # Mettre en forme le graphique
+        fig.update_layout(
+            title='Évolution de la colonne Solde courant',
+            xaxis_title='Index',
+            yaxis_title='Solde courant',
+            showlegend=True
+        )
 
         # Afficher le graphique dans Streamlit
-        st.pyplot(fig)
+        st.plotly_chart(fig)
     else:
         st.write("La colonne 'Solde courant' n'existe pas dans la feuille.")
 else:
