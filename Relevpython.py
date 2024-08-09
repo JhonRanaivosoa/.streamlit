@@ -17,8 +17,9 @@ def load_data(url, sheet_name):
 # Charger les données de la feuille "MCB SANIFER"
 data = load_data(excel_url, "BMOI SANIFER")
 
-st.title(GROUP TALYS)
-st.title(SANIFER BMOI)
+st.title("GROUP TALYS")
+
+st.titl("SANIFER BMOI")
 
 st.write(data)
 
