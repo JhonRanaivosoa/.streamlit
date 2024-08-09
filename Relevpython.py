@@ -1,11 +1,24 @@
 import pandas as pd
+import plotly.express as px
 
-# Remplacer 'votre_fichier.csv' par le nom de votre fichier CSV
-file_path = 'C:\\Users\\jhon.treso\\OneDrive - Sanifer\\Bureau\\15\\00811820101_1721109524739.csv'
+# Exemple de données
+data = {
+    'Category': ['A', 'B', 'C', 'D', 'E'],
+    'Values': [23, 45, 12, 67, 34]
+}
 
+# Conversion des données en DataFrame
+df = pd.DataFrame(data)
 
-# Lire le fichier CSV
-df = pd.read_csv(file_path)
+# Calculs de base
+somme = df['Values'].sum()
+moyenne = df['Values'].mean()
 
-# Afficher le contenu du fichier CSV
-print(df)
+print(f"Somme des valeurs : {somme}")
+print(f"Moyenne des valeurs : {moyenne}")
+
+# Création d'un graphique en barres
+fig = px.bar(df, x='Category', y='Values', title='Graphique des valeurs par catégorie')
+
+# Affichage du graphique
+fig.show()
