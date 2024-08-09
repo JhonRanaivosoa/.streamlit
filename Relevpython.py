@@ -31,7 +31,7 @@ import pandas as pd
 # Exemple de données en milliards
 data = {
     'Date': pd.date_range(start='2023-01-01', periods=10, freq='M'),
-    'Valeur': [1.2, 0.5, -0.3, 2.4, -1.0, 1.8, 0.9, -0.2, 0.4, 1.1]  # Données en milliards
+    'Valeur': [12, 5, -3, 24, -10, 18, 9, -2, 4, 11]  # Données en dizaines
 }
 
 df = pd.DataFrame(data)
