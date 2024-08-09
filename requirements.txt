@@ -6,4 +6,4 @@ gdown==4.2.0
 requests
 openpyxl
 matplotlib
-streamlit-option-menu
+hydralit_components
