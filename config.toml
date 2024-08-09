@@ -1,0 +1,9 @@
+# config.toml
+
+[server]
+# Rechargement automatique en cas de modification du code
+runOnSave = true
+
+[theme]
+# Utilisation du thème clair par défaut
+base = "light"
