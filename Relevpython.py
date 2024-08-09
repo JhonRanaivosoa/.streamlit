@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objs as go
-import hydralit_components as hc
+
 
 
 # URL brute du fichier Excel sur GitHub
