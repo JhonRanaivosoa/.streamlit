@@ -21,7 +21,7 @@ data = load_data(excel_url, "MCB SANIFER")
 if data is not None:
     # Extraire la colonne 'Solde Courant'
     if 'Solde Courant' in data.columns:
-        solde = data['Solde Courant']
+        solde = data['Solde courant']
         
         # Créer le graphique
         fig, ax = plt.subplots()
