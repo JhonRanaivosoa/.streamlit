@@ -17,4 +17,52 @@ def load_data(url, sheet_name):
 # Charger les données de la feuille "MCB SANIFER"
 data = load_data(excel_url, "BMOI SANIFER")
 
+st.title(GROUP TALYS)
+st.title(SANIFER BMOI)
+
 st.write(data)
+
+
+import streamlit as st
+import plotly.graph_objects as go
+import pandas as pd
+
+# Exemple de données en milliards
+data = {
+    'Date': pd.date_range(start='2023-01-01', periods=10, freq='M'),
+    'Valeur': [1.2, 0.5, -0.3, 2.4, -1.0, 1.8, 0.9, -0.2, 0.4, 1.1]  # Données en milliards
+}
+
+df = pd.DataFrame(data)
+
+# Créer une trace avec Plotly
+fig = go.Figure()
+
+# Ajouter une trace pour les valeurs supérieures ou égales à 0 (en bleu)
+fig.add_trace(go.Scatter(
+    x=df['Date'],
+    y=df['Valeur'].where(df['Valeur'] >= 0, None),
+    mode='lines',
+    line=dict(color='blue'),
+    name='Valeurs >= 0'
+))
+
+# Ajouter une trace pour les valeurs inférieures à 0 (en rouge)
+fig.add_trace(go.Scatter(
+    x=df['Date'],
+    y=df['Valeur'].where(df['Valeur'] < 0, None),
+    mode='lines',
+    line=dict(color='red'),
+    name='Valeurs < 0'
+))
+
+# Configurer la mise en page du graphique
+fig.update_layout(
+    title='Courbe Graphique des Valeurs en Milliards',
+    xaxis_title='Date',
+    yaxis_title='Valeur (en milliards)',
+    template='plotly_white'
+)
+
+# Afficher le graphique dans Streamlit
+st.plotly_chart(fig)
