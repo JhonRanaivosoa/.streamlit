@@ -2,13 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Configuration de la page
-st.set_page_config(
-    page_title="Calculs et Visualisation avec Plotly",
-    layout="wide",  # Activer le mode large
-    initial_sidebar_state="auto",  # Affichage automatique de la barre latérale
-    theme="light"  # Utilisation du thème clair
-)
+
 
 # Titre de l'application
 st.title("Calculs et Visualisation avec Plotly")
