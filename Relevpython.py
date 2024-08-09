@@ -37,24 +37,13 @@ if data is not None:
         # Créer le graphique avec Plotly
         fig = go.Figure()
 
-        # Ajouter la trace pour les valeurs en dessous de 0
-        below_zero = data[data['Solde courant'] < 0]
+        # Ajouter la trace pour la colonne 'Solde courant'
         fig.add_trace(go.Scatter(
-            x=below_zero['Date d\'opération'],
-            y=below_zero['Solde courant'],
-            mode='lines',
-            line=dict(color='red'),
-            name='En dessous de 0'
-        ))
-
-        # Ajouter la trace pour les valeurs au-dessus de 0
-        above_zero = data[data['Solde courant'] >= 0]
-        fig.add_trace(go.Scatter(
-            x=above_zero['Date d\'opération'],
-            y=above_zero['Solde courant'],
+            x=data['Date d\'opération'],
+            y=data['Solde courant'],
             mode='lines',
             line=dict(color='blue'),
-            name='Au-dessus de 0'
+            name='Solde courant'
         ))
 
         # Mettre en forme le graphique
