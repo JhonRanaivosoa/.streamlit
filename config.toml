@@ -7,3 +7,7 @@ runOnSave = true
 [theme]
 # Utilisation du thème clair par défaut
 base = "light"
+
+[layout]
+# Activer le mode large
+wideMode = true
