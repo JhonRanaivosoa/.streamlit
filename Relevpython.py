@@ -19,8 +19,8 @@ data = load_data(excel_url, "MCB SANIFER")
 
 # Vérifier si les données ont été chargées
 if data is not None:
-    # Extraire la colonne 'Solde Courant'
-    if 'Solde Courant' in data.columns:
+    # Extraire la colonne 'Solde courant'
+    if 'Solde courant' in data.columns:
         solde = data['Solde courant']
         
         # Créer le graphique
@@ -38,14 +38,15 @@ if data is not None:
         ax.fill_between(above_zero.index, above_zero, color='blue', alpha=0.5, label='Au-dessus de 0')
 
         # Ajouter des labels et une légende
-        ax.set_title('Évolution de la colonne Solde Courant')
+        ax.set_title('Évolution de la colonne Solde courant')
         ax.set_xlabel('Index')
-        ax.set_ylabel('Solde Courant')
+        ax.set_ylabel('Solde courant')
         ax.legend()
 
         # Afficher le graphique dans Streamlit
         st.pyplot(fig)
     else:
-        st.write("La colonne 'Solde Courant' n'existe pas dans la feuille.")
+        st.write("La colonne 'Solde courant' n'existe pas dans la feuille.")
 else:
     st.write("Les données n'ont pas pu être chargées.")
+
