@@ -21,7 +21,11 @@ data = load_data(excel_url, "MCB SANIFER")
 if data is not None:
     # Extraire la colonne 'Solde courant'
     if 'Solde courant' in data.columns:
-        solde = data['Solde courant']
+        # Convertir la colonne en numérique, forcer les erreurs à NaN
+        data['Solde courant'] = pd.to_numeric(data['Solde courant'], errors='coerce')
+        
+        # Supprimer les valeurs manquantes
+        solde = data['Solde courant'].dropna()
         
         # Créer le graphique
         fig, ax = plt.subplots()
