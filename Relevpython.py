@@ -1,7 +1,19 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objs as go
+import hydralit_components as hc
 
+menu_data = [
+    {'label':"Left End"},
+    {'label':"Book"},
+    {'label':"Component"},
+    {'label':"Dashboard"},
+    {'label':"Right End"},
+]
+
+menu_id = hc.nav_bar(menu_definition=menu_data)
+
+st.info(f"{menu_id=}")
 # URL brute du fichier Excel sur GitHub
 excel_url = "https://raw.githubusercontent.com/JhonRanaivosoa/streamlittest/5d21b841763b7f5e76e4e2ffbebc35193d81248a/RELEVE%20SANIFER%202024.xlsx"
 
@@ -25,22 +37,4 @@ st.write(data)
 
 
 
-# Données
-x = [1, 2, 3, 4, 5]
-y = [10, 11, 12, 13, 14]
 
-# Création de la figure
-fig = go.Figure()
-
-# Ajouter une courbe à la figure
-fig.add_trace(go.Scatter(x=x, y=y, mode='lines+markers', name='Courbe'))
-
-# Ajouter des titres et des étiquettes
-fig.update_layout(
-    title='Exemple de Courbe Graphique avec Plotly',
-    xaxis_title='Axe X',
-    yaxis_title='Axe Y'
-)
-
-# Afficher le graphique
-fig.show()
