@@ -19,32 +19,39 @@ data = load_data(excel_url, "MCB SANIFER")
 
 # Vérifier si les données ont été chargées
 if data is not None:
-    # Extraire la colonne 'Solde courant'
-    if 'Solde courant' in data.columns:
-        # Convertir la colonne en numérique, forcer les erreurs à NaN
+    # Afficher les premières lignes de la feuille pour vérification
+    st.write("Données de la feuille 'MCB SANIFER':")
+    st.write(data.head())
+
+    # Vérifier si les colonnes nécessaires existent
+    if 'Solde courant' in data.columns and 'Date d\'opération' in data.columns:
+        # Convertir la colonne 'Date d\'opération' en datetime
+        data['Date d\'opération'] = pd.to_datetime(data['Date d\'opération'], errors='coerce')
+        
+        # Convertir la colonne 'Solde courant' en numérique, forcer les erreurs à NaN
         data['Solde courant'] = pd.to_numeric(data['Solde courant'], errors='coerce')
         
-        # Supprimer les valeurs manquantes
-        solde = data['Solde courant'].dropna()
+        # Supprimer les lignes avec des valeurs manquantes dans les deux colonnes
+        data = data.dropna(subset=['Date d\'opération', 'Solde courant'])
         
         # Créer le graphique avec Plotly
         fig = go.Figure()
 
         # Ajouter la trace pour les valeurs en dessous de 0
-        below_zero = solde[solde < 0]
+        below_zero = data[data['Solde courant'] < 0]
         fig.add_trace(go.Scatter(
-            x=below_zero.index,
-            y=below_zero,
+            x=below_zero['Date d\'opération'],
+            y=below_zero['Solde courant'],
             mode='lines',
             line=dict(color='red'),
             name='En dessous de 0'
         ))
 
         # Ajouter la trace pour les valeurs au-dessus de 0
-        above_zero = solde[solde >= 0]
+        above_zero = data[data['Solde courant'] >= 0]
         fig.add_trace(go.Scatter(
-            x=above_zero.index,
-            y=above_zero,
+            x=above_zero['Date d\'opération'],
+            y=above_zero['Solde courant'],
             mode='lines',
             line=dict(color='blue'),
             name='Au-dessus de 0'
@@ -53,7 +60,7 @@ if data is not None:
         # Mettre en forme le graphique
         fig.update_layout(
             title='Évolution de la colonne Solde courant',
-            xaxis_title='Index',
+            xaxis_title='Date d\'opération',
             yaxis_title='Solde courant',
             showlegend=True
         )
@@ -61,6 +68,7 @@ if data is not None:
         # Afficher le graphique dans Streamlit
         st.plotly_chart(fig)
     else:
-        st.write("La colonne 'Solde courant' n'existe pas dans la feuille.")
+        st.write("Les colonnes 'Solde courant' ou 'Date d\'opération' n'existent pas dans la feuille.")
 else:
     st.write("Les données n'ont pas pu être chargées.")
+
