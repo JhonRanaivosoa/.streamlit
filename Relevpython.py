@@ -19,7 +19,7 @@ data = load_data(excel_url, "BMOI SANIFER")
 
 st.title("GROUP TALYS")
 
-st.titl("SANIFER BMOI")
+st.title("SANIFER BMOI")
 
 st.write(data)
 
