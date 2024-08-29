@@ -53,48 +53,6 @@ elif option == "Contact":
     st.title("Page de contact")
     st.write("Ceci est la page de contact.")
 
-import streamlit as st
-from fpdf import FPDF
-
-# Fonction pour générer le PDF
-def generate_pdf(beneficiary, amount, reference, bank_details):
-    pdf = FPDF()
-    pdf.add_page()
-
-    # Titre
-    pdf.set_font("Arial", size=16)
-    pdf.cell(200, 10, txt="Ordre de Virement", ln=True, align="C")
-
-    # Détails du virement
-    pdf.set_font("Arial", size=12)
-    pdf.ln(10)
-    pdf.cell(200, 10, txt=f"Bénéficiaire: {beneficiary}", ln=True)
-    pdf.cell(200, 10, txt=f"Montant: {amount} EUR", ln=True)
-    pdf.cell(200, 10, txt=f"Référence: {reference}", ln=True)
-    pdf.cell(200, 10, txt=f"Détails bancaires: {bank_details}", ln=True)
-
-    return pdf.output(dest="S").encode("latin1")
-
-# Interface Streamlit
-st.title("Création d'un Ordre de Virement")
-
-beneficiary = st.text_input("Nom du Bénéficiaire")
-amount = st.text_input("Montant (EUR)")
-reference = st.text_input("Référence")
-bank_details = st.text_area("Détails bancaires")
-
-if st.button("Générer le PDF"):
-    if beneficiary and amount and reference and bank_details:
-        pdf_content = generate_pdf(beneficiary, amount, reference, bank_details)
-        st.download_button(
-            label="Télécharger l'Ordre de Virement en PDF",
-            data=pdf_content,
-            file_name="ordre_de_virement.pdf",
-            mime="application/pdf",
-        )
-    else:
-        st.warning("Veuillez remplir tous les champs du formulaire.")
-
 
 
 
