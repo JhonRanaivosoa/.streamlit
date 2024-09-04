@@ -4,10 +4,14 @@
 # Rechargement automatique en cas de modification du code
 runOnSave = true
 
+[server]
+headless = true
+
 [theme]
-# Utilisation du thème clair par défaut
-base = "light"
+primaryColor = "#1c6dd0"
+backgroundColor = "#f0f2f6"
+secondaryBackgroundColor = "#e5e5e5"
+textColor = "#262730"
 
 [layout]
-# Activer le mode large
-wideMode = true
+wide = true
