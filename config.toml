@@ -4,9 +4,6 @@
 # Rechargement automatique en cas de modification du code
 runOnSave = true
 
-[server]
-headless = true
-
 [theme]
 primaryColor = "#1c6dd0"
 backgroundColor = "#f0f2f6"
