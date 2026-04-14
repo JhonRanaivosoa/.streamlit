@@ -19,7 +19,7 @@ def load_data(url, sheet_name):
 # Charger les données de la feuille "MCB SANIFER"
 data = load_data(excel_url, "BMOI SANIFER")
 
-st.title("GROUP TALYS")
+st.title("GROUP TALYS MAJUNGA")
 
 st.title("SANIFER BMOI")
 
