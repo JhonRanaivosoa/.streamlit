@@ -8,4 +8,4 @@ st.write("Hello Jhon COMMENT TU VAS")
 
 st.Write('Hello You')
 
-
+staticmethod
